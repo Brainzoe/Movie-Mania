@@ -1,8 +1,9 @@
-const apiKey = '8f2dc27928f17b4fbd20105b2e6f16a4';
+const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZjJkYzI3OTI4ZjE3YjRmYmQyMDEwNWIyZTZmMTZhNCIsIm5iZiI6MTcyODk5NjQyOS43ODM0ODgsInN1YiI6IjY3MGU2MTA0ZjU4YTkyMDZhYTQxZTY0ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kBa18bcLmr-F9l3WqXsRvdhww0cp8ESPl5QZeEjAW9w'; 
 const baseUrl = 'https://api.themoviedb.org/3';
-const trendingMoviesEndpoint = `${baseUrl}/trending/movie/week?api_key=${apiKey}`;
-const searchEndpoint = `${baseUrl}/search/movie?api_key=${apiKey}&query=`;
+const trendingMoviesEndpoint = `${baseUrl}/trending/movie/week`;
+const searchEndpoint = `${baseUrl}/search/movie?query=`;
 
+// Fetch trending movies on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     fetchTrendingMovies();
     setupSearch();
@@ -12,7 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchTrendingMovies() {
     showLoadingIndicator();
     try {
-        const response = await fetch(trendingMoviesEndpoint);
+        const response = await fetch(trendingMoviesEndpoint, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
         const data = await response.json();
         renderMovies(data.results, '#trending-list');
     } catch (error) {
@@ -23,15 +29,6 @@ async function fetchTrendingMovies() {
     }
 }
 
-function showLoadingIndicator() {
-    document.body.classList.add('loading');
-}
-
-function hideLoadingIndicator() {
-    document.body.classList.remove('loading');
-}
-
-
 // Setup search functionality
 function setupSearch() {
     const searchBar = document.getElementById('search-bar');
@@ -39,7 +36,12 @@ function setupSearch() {
         const query = e.target.value;
         if (query.length > 2) {
             try {
-                const response = await fetch(searchEndpoint + query);
+                const response = await fetch(searchEndpoint + query, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
                 const data = await response.json();
                 renderMovies(data.results, '#trending-list');
             } catch (error) {
@@ -81,10 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
     savedWatchlist.forEach(movie => addToWatchlist(movie));
 });
 
-
 // Error handling
 function showError(message) {
     const errorElement = document.createElement('p');
     errorElement.textContent = message;
     document.body.appendChild(errorElement);
+}
+
+// Loading indicator
+function showLoadingIndicator() {
+    document.body.classList.add('loading');
+}
+
+function hideLoadingIndicator() {
+    document.body.classList.remove('loading');
 }
