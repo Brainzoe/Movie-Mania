@@ -1,4 +1,4 @@
-const apiKey = 'YOUR_API_KEY_HERE';
+const apiKey = '8f2dc27928f17b4fbd20105b2e6f16a4';
 const baseUrl = 'https://api.themoviedb.org/3';
 const trendingMoviesEndpoint = `${baseUrl}/trending/movie/week?api_key=${apiKey}`;
 const searchEndpoint = `${baseUrl}/search/movie?api_key=${apiKey}&query=`;
