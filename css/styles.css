@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+#search-bar {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+main {
+    padding: 20px;
+}
+
+#trending-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#watchlist-items {
+    list-style: none;
+    padding: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    #trending-list {
+        flex-direction: column;
+    }
+    
+    #search-bar {
+        width: 100%;
+    }
+}
+
