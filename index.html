@@ -9,24 +9,46 @@
 <body>
     <header>
         <h1>Movie Mania</h1>
-        <input type="text" id="search-bar" placeholder="Search movies...">
+        <input type="text" id="search-bar" placeholder="Search for a movie...">
     </header>
-    
-    <main>
-        <section id="trending-movies">
-            <h2>Trending Movies</h2>
-            <div id="trending-list"></div>
-        </section>
-        
-        <section id="watchlist">
-            <h2>Your Watchlist</h2>
-            <ul id="watchlist-items"></ul>
-        </section>
-    </main>
-    
-    <footer>
-        <p>Movie Mania &copy; 2024</p>
-    </footer>
+
+    <section id="categories-container">
+        <h2>Categories</h2>
+        <div id="category-buttons">
+            <!-- Dynamic category buttons will be added here -->
+        </div>
+    </section>
+
+    <section id="trending">
+        <h2>Trending Movies</h2>
+        <div id="trending-list">
+            <!-- Dynamic trending movies will be added here -->
+        </div>
+    </section>
+
+    <section id="watchlist">
+        <h2>Your Watchlist</h2>
+        <ul id="watchlist-items">
+            <!-- User's watchlist items will be listed here -->
+        </ul>
+    </section>
+
+    <!-- Movie Details Modal -->
+    <div id="movie-details-modal" class="modal" style="display: none;"> <!-- Ensure modal is initially hidden -->
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="movie-title"></h2> <!-- Ensure this ID is used in JS -->
+            <div id="movie-images"></div> <!-- Ensure this ID is used in JS -->
+            <p id="movie-synopsis"></p> <!-- Ensure this ID is used in JS -->
+            <h3>Cast</h3>
+            <ul id="movie-cast"></ul> <!-- Ensure this ID is used in JS -->
+            <h3>Ratings</h3>
+            <p id="movie-ratings"></p> <!-- Ensure this ID is used in JS -->
+            <h3>Trailers</h3>
+            <div id="movie-trailers"></div> <!-- Ensure this ID is used in JS -->
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
 </body>
 </html>
